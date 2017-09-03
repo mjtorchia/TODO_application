@@ -67,6 +67,7 @@ mysqli_close($connection);
 ?>
 
 <?php
+#THIS CODE IS NOT MINE. USING TO TEACH MYSELF PHP. WILL BE DELETED IN FINAL COMMIT
 $shop = array( array("title"=>"rose", "price"=>1.25 , "number"=>15),
                array("title"=>"daisy", "price"=>0.75 , "number"=>25),
                array("title"=>"orchid", "price"=>1.15 , "number"=>7) 
