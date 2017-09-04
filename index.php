@@ -6,7 +6,6 @@
 <body>
 <head>
 <title>My TODO</title>
-	<h1>My TODO</h1>
 	<h2>TODO
 	<br>
 	--------</h2>
@@ -14,81 +13,89 @@
 
 <?php
 
+#connection information
 $host='localhost';
 $username='root';
 $password='mike91290';
 $database='todo';
 
 
-
-$connection=mysqli_connect($host,$username,$password,$database);
-#if(!$connection){
-#	echo 'Could not connect';
-#}
-#else{
-#	echo nl2br("Connected\n");
-#}
-
-
-
-
-
-
-
-#if($result=mysqli_query($connection, "SELECT id FROM tasks LIMIT 10")){
-#	printf("Select returned %d rows.\n",mysqli_num_rows($result));
-#	mysqli_free_result($result);
-#}
-
-
-#echo "<th>ID</th>";
-#echo "<th>Task</th>";
-#echo "<th>Priority</th>";
-#echo "<th>Completed</th>";
-
-
-
-$q="SELECT * FROM tasks";
-$result=mysqli_query($connection,$q);
-while($row=mysqli_fetch_row($result)){
-
-	#echo"<pre>";
-	#printf("%s    %s    %s    %s\n",$row[0],$row[1],$row[2],$row[3]);
-	#echo "</pre>";
-	#printf ("%s (%s)\n",$row[0],$row[1]);
+#connect to database
+$connection=mysqli_connect($host,$username,$password,$database); 
+if(!$connection){
+	die("Cannot connect: " . mysql_error());
 }
 
 
+#when the delete (x) button is pressed, run the querey
+if(isset($_POST['delete'])){
+	$delete="DELETE FROM tasks WHERE id='$_POST[id]'";
+	mysqli_query($connection,$delete);
+};
+
+if(isset($_POST['submit'])){
+	#$add="DELETE FROM tasks WHERE id='$_POST[id]'";
+	$add="INSERT INTO tasks (Task,Priority) VALUES ('$_POST[taskname]','$_POST[priority]')";
+	mysqli_query($connection,$add);
+};
+
+#get all data from tasks table
+$q="SELECT * FROM tasks";
+$result=mysqli_query($connection,$q);
+
+#table heading creation
+echo "<table cellpadding=1>
+		<tr>
+			<!--<th>ID</th>-->
+			<th>Task</th>
+			<th>Priority</th>
+		</tr>";
+
+#fetch each row of my tasks table and output
+#them in html table
+while($row=mysqli_fetch_array($result)){
+	echo "<form action=index.php method=post>"; #each row is its own form
+	echo "<tr>";
+		#echo "<td align=center>" . $row['id'] . " </td>";
+		echo "<td align=center>" . $row['Task'] . "</td>";
+		echo "<td align=center>" . $row['Priority'] . "</td>";
+
+		#hidden typed used to properly delete entry in the
+		#if(isset) condition statement
+		#$row['id'] is the same of the $row['id'] from above
+		echo "<td>" . "<input type=hidden name=id value=" . $row['id'] . " </td>";
+		
+		echo "<td>" . "<input type=submit name=delete value=Delete>" . "</td>";
+		echo "</tr>";
+	echo "</form>";
+}
+echo"</table>";
+echo "<br>";
+echo "<form action=index.php method=post>";
+echo "Add Task" . " ";
+echo "<input type=text name=taskname size=5>" . " ";
+echo "<br>";
+echo "Priority Level" . " ";
+echo "<select name=priority>
+		<option value=high name=high>High</option>
+		<option value=medium name=medium>Medium</option>
+		<option value=low name=low>Low</option>
+	 </select>";
+echo "<br>";
+echo "<input type=submit name=submit value=Submit>";
 
 
 
-mysqli_close($connection);
+
 
 ?>
 
-<?php
-#THIS CODE IS NOT MINE. USING TO TEACH MYSELF PHP. WILL BE DELETED IN FINAL COMMIT
-$shop = array( array("title"=>"rose", "price"=>1.25 , "number"=>15),
-               array("title"=>"daisy", "price"=>0.75 , "number"=>25),
-               array("title"=>"orchid", "price"=>1.15 , "number"=>7) 
-             ); 
-?>
-<?php if (count($shop) > 0): ?>
-<table>
-  <thead>
-    <tr>
-      <th><?php echo implode('</th><th>', array_keys(current($shop))); ?></th>
-    </tr>
-  </thead>
-  <tbody>
-<?php foreach ($shop as $row): array_map('htmlentities', $row); ?>
-    <tr>
-      <td><?php echo implode('</td><td>', $row); ?></td>
-    </tr>
-<?php endforeach; ?>
-  </tbody>
-</table>
-<?php endif; ?>
+
+
+
+
+<!-- Close database connection-->
+<?php mysqli_close($connection);?>
 
 
 </body>
