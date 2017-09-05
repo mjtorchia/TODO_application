@@ -24,7 +24,7 @@ th{
 #connection information
 $host='localhost';
 $username='root';
-$password='mike91290';
+$password='';
 $database='todo';
 
 
