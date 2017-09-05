@@ -24,7 +24,7 @@ th{
 #connection information
 $host='localhost';
 $username='root';
-$password='';
+$password='mike91290';
 $database='todo';
 
 
@@ -33,6 +33,9 @@ $connection=mysqli_connect($host,$username,$password,$database);
 if(!$connection){
 	die("Cannot connect: " . mysql_error());
 }
+
+
+
 
 
 #when the delete button is pressed, run the querey
@@ -47,8 +50,8 @@ if(isset($_POST['submit'])){
 	mysqli_query($connection,$add);
 };
 
-#get all data from tasks table
-$q="SELECT * FROM tasks";
+#get all data from tasks table in order of Priority
+$q="SELECT * FROM tasks ORDER BY FIELD(Priority,'High','Medium','Low') asc";
 $result=mysqli_query($connection,$q);
 
 #table heading creation
@@ -95,7 +98,9 @@ echo "<select name=priority>
 	 </select>";
 echo "<br>";
 echo "<br>";
-echo "<textarea name=desc rows=6 cols=25 align=left>Enter task description.</textarea>";
+echo "Task Description";
+echo "<br>";
+echo "<textarea name=desc rows=6 cols=35 align=left></textarea>";
 echo "<br>";
 echo "<input type=submit name=submit value=Submit>";
 
