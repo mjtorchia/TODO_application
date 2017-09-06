@@ -11,7 +11,7 @@ Notes:
 	Allocated this time to fimilarizing myself with the new packages ex:"hello world" tests
 Issues:
 
-Name of task: Create TODO database
+Name of task: Create todo database
 Estimated # of hours: .5
 Acutal Time spent: .5
 Notes:
@@ -19,24 +19,30 @@ Notes:
 
 Name of task: php tutorials
 Estimated # of hours: 1.5
-Acutal Time spend: 4
+Acutal Time spent: 4
 Notes:
 Issues:
 	Had issues correctly outputting database entries to site
 
 Name of task: web form construction
 Estimated # of hours: 3
-Actual Time spend: 3
+Actual Time spent: 3
 Notes:
 Issues:
 
 Name of task: System architechture Diagram
 Estimated # of hours: .5
-Actual Time spend: 1
+Actual Time spent: 1
 Notes:
 Issues:
 
-
+Name of task: TODO documentation
+Esitmated # of hours: 2
+Actual Time spent: 5
+Notes:
+Issues:
+	Took longer than expected. Software engineer documentation skills
+	need sharpening
 
 ---------------------------------------------------------------------------
 
@@ -45,20 +51,20 @@ Functional requirments:
 	view task -  done
 	delete task - done
 
-Non-functional requirements: TODO
+Non-functional requirements: done
 
 System architecture Diagram: done
 	[see whiteboard]
 
 
-Data flow diagram: TODO
+Data flow diagram: done
 
-Use case: (3 use cases) TODO
+Use case: (3 use cases) done
 
-Sequence Diagram: (3) TODO
+Sequence Diagram: (3) done
 
-Database design (one for system, 3 tables) TODO
+Database design (one for system, 3 tables) done
 
-Class diagram (one for system, 3 tables) TODO
+Class diagram (one for system, 3 tables) done
 
-Test case: (3 operations to be tested) TODO
+Test case: (3 operations to be tested) done
