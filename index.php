@@ -24,7 +24,7 @@ th{
 #connection information
 $host='localhost';
 $username='root';
-$password='mike91290';
+$password=''; #removed
 $database='todo';
 
 
@@ -98,7 +98,7 @@ echo "<select name=priority>
 	 </select>";
 echo "<br>";
 echo "<br>";
-echo "Task Description";
+echo "Task Description (Optional)";
 echo "<br>";
 echo "<textarea name=desc rows=6 cols=35 align=left></textarea>";
 echo "<br>";
